@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .spread {
+            /* 控制圆大小 */
+            width: 20px;
+            margin: 20px;
+            display: inline-block;
+        }
+        .spread  .circle { 
+            width: 100%;
+            padding-top: 100%;
+            background-color: aqua;
+            border-radius: 50%;
+            position: relative;
+        }
+        .spread  .circle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding-top: 100%;
+            background-color: aqua;
+            border-radius: 50%;
+            animation: spread 1s ease-in-out infinite;
+            transform-origin: center;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        @-webkit-keyframes spread {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="config">
+        大小：<button data-type="0" data-func="1">+</button><button data-type="0" data-func="0">-</button>
+        距离：<button data-type="1" data-func="1">+</button><button data-type="1" data-func="0">-</button>
+        个数：<button data-type="add" data-func="1">+</button><button data-type="add" data-func="0">-</button>
+    </div>
+    <div id="content">
+        <div class="spread">
+            <div class="circle">
+            </div>
+        </div>
+        <div class="spread">
+            <div class="circle">
+            </div>
+        </div>
+        <div class="spread">
+            <div class="circle">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("config").addEventListener("click", alco);
+        let arr = ["width", "marginRight"];
+        function alco(e) {
+            let { type, func} = e.target.dataset;
+            let numb = 20;
+            if(type !== "add") {
+                document.body.querySelectorAll(".spread").forEach(e => {
+                    numb = e.style[arr[type]] && e.style[arr[type]] > '0px' ? parseInt(e.style[arr[type]]) : 20;
+                    if(func === "1") {
+                        e.style[arr[type]] = numb + 5 + 'px';
+                    } else {
+                        e.style[arr[type]] = numb - 5 + 'px';
+                    }
+                })
+            } else {
+                if(func === "1") {
+                    document.getElementById("content").innerHTML += `<div class="spread">
+                        <div class="circle">
+                        </div>
+                    </div>`;
+                } else {
+                    let content = document.getElementById("content");
+                    let lastChild = content.lastElementChild ? content.lastElementChild : content.lastChild; 
+                    content.removeChild(lastChild);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

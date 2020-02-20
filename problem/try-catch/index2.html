@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    window.onerror = function() {
+        console.log('window');
+    }
+    function test() {
+        try {
+            return console.log('try');
+        } catch(e) {
+            return console.log(e);
+        } finally {
+            throw new Error('throw');
+            return console.log('findally');
+        }
+        console.log(1)
+    }
+    test();
+
+
+//  finally 语句在 try 和 catch 之后无论有无异常都会执行。
+</script>
+</html>
