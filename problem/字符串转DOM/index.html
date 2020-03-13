@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div class="header" id="header">
+            头部内容
+        </div>
+        <div data-attribut="我是啥">
+            <div>
+                写写看
+                <a>
+                    jsx转化成对象
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+// DOM string => obj:
+let str = `<div><div class="header" id="header">头部内容
+        </div>
+        <div data-attribut="我是啥">
+            <div>
+                写写看
+                <a>
+                    jsx转化成对象
+                </a>
+            </div>
+        </div>
+    </div>`;
+let obj = {};
+let jsxStack = [];
+
+function jsxBable(str) {
+    let regExp = /<[^<]+>/gi;
+    obj = str.match(regExp);
+    let jsxStack = [];
+    jsxStack.push()
+    return obj;
+}
+console.log(jsxBable(str))
+
+</script>
+</html>
