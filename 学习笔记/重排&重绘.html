@@ -1,0 +1,81 @@
+<!--
+ * 重排（回流）：
+ * 1.改变窗口大小
+ * 2.改变文字大小
+ * 3.改变边距
+ * 4.改变元素位置
+ * ....
+ * 重绘
+ * 1.改变元素颜色
+ * 
+ * 所有的重排都会引发重绘
+ * 
+ * 减少重排：
+ * 1、使用Fragment、字符串操作DOM；
+ * 2、浏览器有本身的队列优化，但在频繁读取offsetTop、offsetLeft、offsetWidth、offsetHeightscrollTop、
+ * scrollLeft、scrollWidth、scrollHeightclientTop、clientLeft、clientWidth、clientHeight、
+ * getComputedStyle()getBoundingClientRect时候会强制刷新队列，导致重排，因此可以通过缓存属性值提高性能；
+ * 3、避免使用table布局
+ * 
+ * 参考：https://segmentfault.com/a/1190000016990089
+ -->
+
+ <!-- 
+     一、浏览器url处理过程（内核处理）
+     1.判断协议
+     2.对url进行安全检查（XSS过滤器、同源策略）
+     3.调用浏览器内核中对应的webview方法，loadurl
+     二、发送请求
+     1.通过DNS查询IP；
+     2.通过socket发送数据；
+     三、服务器端处理
+     1.负载均衡的实现
+     （1）LVS（TCP层）
+     （2）反向代理（http上；HAProxy、nginx）
+     2.Web Server
+  -->
+  <!-- 
+      浏览器进程：
+      1.Browser进程（主控进程）、第三方插件进程、GPU进程、浏览器渲染进程（默认每个tab一个）；
+      2.每个tab可以看做浏览器内核进程，包含GUI线程、JS引擎线程、事件触发线程、定时器线程、网络请求线程；
+      3.·
+   -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+     <div>
+        <div style="overflow: hidden;">fffff</div>
+     </div>
+ </body>
+
+ <script>
+    function quickSort(arr) {
+        if(Array.isArray(arr) && arr.length <= 1) {
+            return arr;
+        }
+        let middle = arr.length / 2;
+        let leftArr = [];
+        let rightArr = [];
+        for(let i = 0; i < arr.length; i++) {
+            if(i !== middle) {
+                if(arr[i] < arr[middle]) {
+                    leftArr.push(arr[i]);
+                } else {
+                    rightArr.push(arr[i]);
+                }
+            }
+        }
+        console.log(leftArr, rightArr);
+        return quickSort(leftArr).concat(arr[middle], quickSort[rightArr]);
+    }
+    console.log(quickSort([3,5,1,88,2,9,34,89]));
+ </script>
+ </html>
+
+ 

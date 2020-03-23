@@ -9,5 +9,4 @@
 5. canvas画图感觉很模糊和1px；
 6. 写个简单的bable；
 
-
 ![image](https://raw.githubusercontent.com/racheljoin/interesting-Problem/master/img/spread.gif)
