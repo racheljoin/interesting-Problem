@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/muse-ui/dist/muse-ui.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/muse-ui/dist/muse-ui.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            template: `<div><mu-container>
+                <mu-flex justify-content="center">
+                    <mu-button @click="openSimpleDialog">Open Dialog</mu-button>
+                </mu-flex>
+                <mu-dialog title="Dialog" width="360" :open.sync="openSimple">
+                    this is simple Dialog
+                    <mu-button slot="actions" flat color="primary" @click="closeSimpleDialog">Close</mu-button>
+                </mu-dialog>
+                </mu-container>
+            </div>`,
+            data () {
+                return {
+                    openSimple: false
+                };
+            },
+            methods: {
+                openSimpleDialog () {
+                this.openSimple = true;
+                },
+                closeSimpleDialog () {
+                this.openSimple = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
