@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+         * 
+        let origin = [
+            [1, 2],
+            [3, 4],
+            [
+                [5, 6],
+                [7, 8]
+            ],
+            [
+                [
+                    [9, 10],
+                    [11, 12]
+                ]
+            ]
+        ]，
+        处理成：
+        [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]]
+        */
+        let result = [];
+        function flatArray(array) {
+            let path = [];
+            if(Array.isArray(array)) {
+                array.forEach(item => {
+                    if(!Array.isArray(item)) {
+                        path.push(item);
+                    } else {
+                        flatArray(item, path, result);
+                    }
+                })
+                if(path.length) {
+                    result.push([...path]);
+                }
+            }
+            return result;
+        }
+        console.log(flatArray([
+            [1, 2],
+            [3, 4, [11, 12]],
+            [
+                [5],
+                [7, 8]
+            ],
+            [
+                [
+                    [9, 10],
+                    [11, 12, [15, 16]]
+                ]
+            ]
+        ]))
+    </script>
+
+    <script>
+        /**
+            注释中为理解
+        */
+        // 1、变量提升a，b；
+
+        var a = {n: 1}; // 1、开辟堆空间{n: 1}，假设空间地址为FFF0  2、赋值a，FFF0;
+
+        // 补充：赋值操作（1）通过LHS操作查询作用域链中的变量，查询结果为一个地址引用；（2）计算等号右侧的值，进行RHS操作，赋值给左侧引用；
+        var b = a; // （1）LHS操作查询作用域链中变量b，（2）RHS操作查询a为地址FFF0，赋值给b；
+        
+        a.x = a = {n: 2}; // 1、LHS操作，找到a.x，a；a是FFF0，a.x指向FFF0空间的x，2、开辟堆空间{n: 2}，假设FFF1，从右到左赋值，a指向FFF1，a.x为LHS查询时找到的FFF0空间里的x，赋值为FFF1
+        console.log(a.x); // a.x => FFF1空间中的x，undefined；
+        console.log(b.x); // b.x => FFF0空间中的x => FFF1空间的值，{n:2}
+    </script>
+
+    <script>
+        /* 
+            类数组：key值为数字，length属性为数字的对象，比如：{0:1, 1:12, 2: 34, length: 3};
+            Array.prototype.push：this[length] = arguments[0]; this.length++;
+        */
+        var obj = {
+            '2': 3,
+            '3': 4,
+            length: 2,
+            'push': Array.prototype.push
+        }
+        // obj[length] = 1(即obj[2] = 1); obj.length++; 
+        obj.push(1);
+        // obj[length] = 1(即obj[3] = 1); obj.length++;
+        obj.push(2);
+        console.log(obj);
+    </script>
+
+    <script>
+        ['10','10','10','10','10'].map(parseInt);
+    </script>
+
+    <script>
+        // a.b 和 a['b']性能问题
+    </script>
+</body>
+</html>
