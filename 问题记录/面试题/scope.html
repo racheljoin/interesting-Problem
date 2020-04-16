@@ -30,13 +30,7 @@
         function flatArray(array) {
             let path = [];
             if(Array.isArray(array)) {
-                array.forEach(item => {
-                    if(!Array.isArray(item)) {
-                        path.push(item);
-                    } else {
-                        flatArray(item, path, result);
-                    }
-                })
+                array.forEach(item => !Array.isArray(item) ? path.push(item) : flatArray(item, path, result))
                 if(path.length) {
                     result.push([...path]);
                 }

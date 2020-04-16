@@ -61,7 +61,7 @@
                     fn.call(this)(); // 20
                     arguments[0]()(); // 20
                     arguments[0].call(this)(); // 20
-                    arguments[0]().call(this); // 20
+                    arguments[0]().call(this); // 10
                 }
             }
             var age = 20;

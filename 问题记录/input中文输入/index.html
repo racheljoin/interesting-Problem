@@ -8,6 +8,9 @@
 <body>
     <input id="input" />
     <script>
+        /*
+            实现input框length限制<10，length计算方式：中文：2个字符，英文：1一个字符；
+        */
         let inputDom = document.getElementById('input');
         inputDom.addEventListener('input', function(e) {
             console.log('input')
