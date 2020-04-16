@@ -71,6 +71,7 @@
         var b = a; // （1）LHS操作查询作用域链中变量b，（2）RHS操作查询a为地址FFF0，赋值给b；
         
         a.x = a = {n: 2}; // 1、LHS操作，找到a.x，a；a是FFF0，a.x指向FFF0空间的x，2、开辟堆空间{n: 2}，假设FFF1，从右到左赋值，a指向FFF1，a.x为LHS查询时找到的FFF0空间里的x，赋值为FFF1
+        a.x = a = {n: 2};
         console.log(a.x); // a.x => FFF1空间中的x，undefined；
         console.log(b.x); // b.x => FFF0空间中的x => FFF1空间的值，{n:2}
     </script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input" />
+    <script>
+        let inputDom = document.getElementById('input');
+        inputDom.addEventListener('input', function(e) {
+            console.log('input')
+            if(e.target.composing){
+                return;
+            }
+        })
+        inputDom.addEventListener('compositionstart',function(e) {
+            e.target.composing = true;
+        });
+        inputDom.addEventListener('compositionend',function(e) {
+            console.log('compositionend')
+            e.target.composing = false;
+        });
+    </script>
+</body>
+</html>

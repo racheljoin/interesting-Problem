@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        console.log('第一题：');
+        /*
+            思考：es5和es6的类有什么差别；
+        */
+        function Foo() {
+            getName = function() {console.log(1)};
+            return this;
+        }
+        Foo.getName = function() {console.log(2)};
+        Foo.prototype.getName = function() {console.log(3)};
+        var getName = function() {console.log(4)};
+        function getName() {console.log(5)};
+
+        Foo.getName(); // 2
+        getName(); // 4
+        Foo().getName(); // this为window，1
+        getName(); // 1
+        new Foo.getName(); // 2 => new (Foo.getName())
+        new Foo().getName(); // 3 => (new Foo()).getName() => Foo类对象调用getName，找到了Foo.prototype
+        new new Foo().getName(); // 3  => new (new Foo()).getName()
+    </script>
+    <script>
+        /*
+            执行栈 执行上下文 this判断
+            一般情况下：
+            this: （1）显示指定（2）隐示指定（3）默认绑定
+        */
+        console.log('第二题：');
+        {
+            var obj = {
+                age: 18,
+                foo: function(func) {
+                    func(); // 10
+                    arguments[0](); // undefined
+                }
+            }
+            var age = 10;
+
+            function func() {
+                console.log(this.age);
+            }
+            obj.foo(func);
+        }
+    </script>
+    <script>
+        console.log('第三题：');
+        {
+            var obj ={
+                age: 10,
+                foo: function(fn) {
+                    fn.call(this)(); // 20
+                    arguments[0]()(); // 20
+                    arguments[0].call(this)(); // 20
+                    arguments[0]().call(this); // 20
+                }
+            }
+            var age = 20;
+            function temp() {
+                return function() {
+                    console.log(this.age);
+                }
+            }
+            obj.foo(temp);
+        }
+    </script>
+</body>
+</html>
