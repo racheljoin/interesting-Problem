@@ -12,7 +12,6 @@
         </div>
         <div data-attribut="我是啥">
             <div>
-                写写看
                 <a>
                     jsx转化成对象
                 </a>
@@ -20,31 +19,26 @@
         </div>
     </div>
 </body>
+
+<!-- 源代码地址：https://github.com/zwStar/vue-ast/blob/master/demo.html -->
+<script src="./ast.js"></script>
 <script>
-
 // DOM string => obj:
-let str = `<div><div class="header" id="header">头部内容
+let str = `<div>
+    <div class="header" id="header">头部内容
+    </div>
+    <div data-attribut="我是啥">
+        <div>
+            写写看
+            <a>
+                jsx转化成对象
+            </a>
         </div>
-        <div data-attribut="我是啥">
-            <div>
-                写写看
-                <a>
-                    jsx转化成对象
-                </a>
-            </div>
-        </div>
-    </div>`;
-let obj = {};
-let jsxStack = [];
-
-function jsxBable(str) {
-    let regExp = /<[^<]+>/gi;
-    obj = str.match(regExp);
-    let jsxStack = [];
-    jsxStack.push()
-    return obj;
-}
-console.log(jsxBable(str))
+    </div>
+</div>`;
+var ast = new Parse(str);
+console.log("转化成的AST树为：");
+console.log(ast);
 
 </script>
 </html>

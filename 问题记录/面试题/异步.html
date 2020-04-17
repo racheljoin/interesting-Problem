@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log('1');
+        // setTimeout(function() {
+        //     new Promise(function(f) {
+        //         console.log('4');
+        //         f();
+        //     }).then(function() {
+        //         console.log('5')
+        //     })
+        // })
+        // new Promise(function(f) {
+        //     console.log('7');
+        //     f();
+        // }).then(function() {
+        //     console.log('8')
+        // })
+
+        // setTimeout(function() {
+        //     console.log('9');
+        //     new Promise(function(f) {
+        //         console.log('11');
+        //         f();
+        //     }).then(function() {
+        //         console.log('12')
+        //     })
+        // })
+        // console.log('2');
+    </script>
+
+    <script>
+        // console.log('第二题：')
+        // const first = () => (new Promise((resovle,reject)=>{
+        //     console.log(3);
+        //     let p = new Promise((resovle, reject)=>{
+        //         console.log(7);
+        //         setTimeout(()=>{
+        //             console.log(5);
+        //             resovle(6); 
+        //         },0)
+        //         resovle(1);
+        //     }); 
+        //     resovle(2);
+        //     p.then((arg)=>{
+        //         console.log(arg);
+        //     });
+
+        // }));
+
+        // first().then((arg)=>{
+        //     console.log(arg);
+        // });
+        // console.log(4);
+    </script>
+    <script>
+        // console.log('第三题：')
+        // Promise.resolve(1).then(Promise.resolve(2)).then((v) => {
+        //     console.log(v); // 1
+        // })
+
+        // Promise.resolve(1).then(() => Promise.resolve(2)).then((v) => {
+        //     console.log(v); // 2
+        // })
+
+        // Promise.resolve(1).then(null).then((v) => {
+        //     console.log(v); // 1
+        // })
+
+        // Promise.resolve(1).then(() => 2).then((v) => {
+        //     console.log(v); // 2
+        // })
+    </script>
+</body>
+</html>
