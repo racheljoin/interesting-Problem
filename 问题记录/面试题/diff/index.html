@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/deep-diff@1/dist/deep-diff.min.js"></script>
+    <script src="./diff.js"></script>
     <script>
         var lhs = {
             name: 'my object',
@@ -28,7 +28,7 @@
             }
         };
 
-        var differences = DeepDiff.diff(lhs, rhs);
+        var differences = DeepDiff(lhs, rhs);
         console.log(differences);
     </script>
 </body>
