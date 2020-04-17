@@ -1,3 +1,5 @@
+// copy地址：https://github.com/flitbit/diff
+
 var validKinds = ['N', 'E', 'A', 'D'];
 
   // nodejs compatible on server side and in the browser.
